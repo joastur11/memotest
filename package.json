@@ -1,0 +1,22 @@
+{
+  "name": "memotest",
+  "version": "1.0.0",
+  "description": "Juego de memotest para r/argentinaprograma ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joastur11/memotest.git"
+  },
+  "author": "joastur11",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joastur11/memotest/issues"
+  },
+  "homepage": "https://github.com/joastur11/memotest#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.6"
+  }
+}
