@@ -7,22 +7,41 @@
 // ir contando el numero de intentos cada dos clicks 
 // el juego termina cuando desaparecen todos los cuadros, no se puede perder
 // el boton de empezar se transforma en boton de reinicio (no cambia la funcionalidad (creo) solo la palabra)
+// mostrar tiempo de juego
 
-let intento = 0
+let intento = 0 //seleccionar el intento del html
 
 document.querySelector('button[type=button]').onclick = comenzarJuego
 
 function comenzarJuego (){
     reiniciarIntento ()
     manejarRonda ()
+    iniciarCronometro ()
+}
+
+let tiempo = 0;
+let intervalo;
+
+function iniciarCronometro() {
+  intervalo = setInterval(() => {
+    tiempo++;
+    const minutos = Math.floor(tiempo / 60).toString().padStart(2, '0');
+    const segundos = (tiempo % 60).toString().padStart(2, '0');
+    document.getElementById('cronometro').textContent = `${minutos}:${segundos}`;
+  }, 1000);
+}
+
+function detenerCronometro() {
+  clearInterval(intervalo);
 }
 
 function reiniciarIntento (){
-    ronda = 0
+    intento = 0
 }
 
 function manejarRonda (){
-    //actualizar estado
+    //actualizar mensaje bienvenida
+    //bloquear boton empezar
     pintarCuadros()
 }
 
@@ -40,6 +59,7 @@ function pintarCuadros (){
     for (let i=0; i<indices.length; i+=2) {
         pares.push([indices[i], indices[i + 1]])
     }
+
     for (let i=0; i<pares.length; i++){
         const [a, b] = pares[i];
         const colores = ['red', 'green', 'blue', 'orange', 'purple', 'pink', 'yellow', 'brown'];
