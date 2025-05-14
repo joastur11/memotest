@@ -12,11 +12,11 @@
 // el juego termina cuando desaparecen todos los cuadros, no se puede perder
 // mensaje tardaste tanto en tantos intentos
 
-
-let $intento = document.querySelector('#intento') 
-$intento = 0
+let intento = 0
 
 document.querySelector('button[type=button]').onclick = comenzarJuego
+
+actualizarNumerointento ('-')
 
 const $boton = document.querySelector('#boton-empezar')
 
@@ -54,7 +54,7 @@ function detenerCronometro() {
 }
 
 function reiniciarIntento (){
-    $intento = 0
+    intento = 0
 }
 
 function manejarRonda (){
@@ -116,8 +116,9 @@ function mostrarCuadro (e){
             }, 500);
         }
         seleccionados = []
+        intento ++
+        actualizarNumerointento(intento)
     }
-
 }
 
 function seleccionCuadrosUsuario (){
@@ -129,4 +130,6 @@ function seleccionCuadrosUsuario (){
 
 let seleccionados = []
 
-
+function actualizarNumerointento(intento) {
+  document.querySelector('#intento').textContent = intento;
+}
