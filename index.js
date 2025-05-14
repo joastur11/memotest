@@ -13,10 +13,22 @@ let intento = 0 //seleccionar el intento del html
 
 document.querySelector('button[type=button]').onclick = comenzarJuego
 
+const $boton = document.querySelector('#boton-empezar')
+
+function cambiarBoton (){
+    $boton.textContent ='Reiniciar'
+    $boton.setAttribute('value', 'reset')  
+}
+
 function comenzarJuego (){
+    if ($boton.value === 'reset'){
+        location.reload()
+    } else {
     reiniciarIntento ()
+    cambiarBoton ()
     manejarRonda ()
     iniciarCronometro ()
+    }
 }
 
 let tiempo = 0;
@@ -40,8 +52,8 @@ function reiniciarIntento (){
 }
 
 function manejarRonda (){
-    //actualizar mensaje bienvenida
-    //bloquear boton empezar
+    $mensajeInicio = document.querySelector('#estado')
+    $mensajeInicio.innerHTML = '<strong> Buena suerte! </strong>'
     pintarCuadros()
 }
 
