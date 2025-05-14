@@ -1,15 +1,19 @@
-// boton empezar juego, cambiar mensaje de bienvenida por "el juego ha comenzado"
-// que los cuadros (en pares) se pinten de un color random sin que se vea 
+// x boton empezar juego, cambiar mensaje de bienvenida por "el juego ha comenzado"
+// x que los cuadros (en pares) se pinten de un color random 
+// x que no se vean los cuadros (puede ser que tengan un borde, y que el color se revele onclick)
 // revelar el color cuando se clickee un cuadro, mantenerlo hasta que se clickee otro
-// color en clase oculto, que se revele cuando se haga click
+// x color en clase oculto, que se revele cuando se haga click
 // si los colores son iguales, poner opacidad de los cuadros en 0 y bloquear el input de esos cuadros.
 // si son distintos, los cuadros vuelven al color de fondo
 // ir contando el numero de intentos cada dos clicks 
 // el juego termina cuando desaparecen todos los cuadros, no se puede perder
-// el boton de empezar se transforma en boton de reinicio (no cambia la funcionalidad (creo) solo la palabra)
-// mostrar tiempo de juego
+// x el boton de empezar se transforma en boton de reinicio (no cambia la funcionalidad (creo) solo la palabra)
+// x mostrar tiempo de juego
 
-let intento = 0 //seleccionar el intento del html
+
+
+let $intento = document.querySelector('#intento') 
+$intento = 0
 
 document.querySelector('button[type=button]').onclick = comenzarJuego
 
@@ -48,7 +52,7 @@ function detenerCronometro() {
 }
 
 function reiniciarIntento (){
-    intento = 0
+    $intento = 0
 }
 
 function manejarRonda (){
@@ -78,7 +82,16 @@ function pintarCuadros (){
         const color = colores[i]
         $cuadros[a].style.backgroundColor = color
         $cuadros[b].style.backgroundColor = color
-    }
+
+        $cuadros[a].dataset.color = color;
+        $cuadros[b].dataset.color = color;
+
+        $cuadros[a].style.backgroundColor = color;
+        $cuadros[b].style.backgroundColor = color;
+
+        $cuadros[a].classList.add('oculto');
+        $cuadros[b].classList.add('oculto');
+    }    
 }
 
 
