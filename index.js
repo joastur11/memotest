@@ -1,17 +1,3 @@
-// x boton empezar juego, cambiar mensaje de bienvenida por "el juego ha comenzado"
-// x que los cuadros (en pares) se pinten de un color random 
-// x que no se vean los cuadros (puede ser que tengan un borde, y que el color se revele onclick)
-// x color en clase oculto, que se revele cuando se haga click
-// x el boton de empezar se transforma en boton de reinicio (no cambia la funcionalidad (creo) solo la palabra)
-// x mostrar tiempo de juego
-// x hacer clickleable los cuadros
-// x revelar el color cuando se clickee un cuadro
-// x si los colores son iguales, borrar bordes, poner opacidad de los cuadros en 0 y bloquear el input de esos cuadros.
-// x si son distintos, los cuadros vuelven al color de fondo
-// ir contando el numero de intentos cada dos clicks 
-// el juego termina cuando desaparecen todos los cuadros, no se puede perder
-// mensaje tardaste tanto en tantos intentos
-
 let intento = 0
 
 document.querySelector('button[type=button]').onclick = comenzarJuego
@@ -96,6 +82,8 @@ function pintarCuadros (){
     }    
 }
 
+let paresAcertados = 0
+
 function mostrarCuadro (e){
     const $cuadro = e.target
     $cuadro.classList.remove('oculto');
@@ -103,12 +91,16 @@ function mostrarCuadro (e){
 
     if (seleccionados.length === 2){
         const [cuadro1, cuadro2] = seleccionados
-        
+
         if (cuadro1.dataset.color  === cuadro2.dataset.color ) {
             setTimeout(() => {
                 cuadro1.style.visibility = 'hidden';
                 cuadro2.style.visibility = 'hidden';
-            }, 500);
+                paresAcertados++
+                if (paresAcertados === 8){
+                    finDelJuego()
+                }
+            }, 500)
         } else {
             setTimeout(() => {
                 cuadro1.classList.add('oculto');
@@ -133,3 +125,10 @@ let seleccionados = []
 function actualizarNumerointento(intento) {
   document.querySelector('#intento').textContent = intento;
 }
+
+function finDelJuego (){
+    const $textoFinal = document.querySelector('#texto-final')
+    $textoFinal.innerHTML = '<strong> Fin del juego! </strong>'
+    detenerCronometro()
+}
+
